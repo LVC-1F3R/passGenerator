@@ -1,21 +1,48 @@
 // Assignment code here
 function passLength() {
   let x = prompt("Pass length? (Must be between 8 to 128 characters.")
-  if (x > 8 && x < 128) {
-    charTypes()
+  if (x >= 8 && x <= 128) {
+    lowerCase()
   } else {
     generatePassword()
   }
-  return 
+  return x
 } 
 
-function charTypes() {
-  
+function lowerCase() {
+  let x = prompt("Do you want to include lower case letters?")
+  return x
 }
 
+function upperCase() {
+  let x = prompt("Do you want to include upper case letters?")
+  return x
+}
+
+function numeric() {
+  let x = prompt("Do you want to include numeric values?")
+  return x
+}
+
+function specialChar() {
+  let x = prompt("Do you want to include special characters?")
+  return x
+}
+
+function validate() {
+  if (lowerCase() && upperCase() && numeric() && specialChar() == false) {
+    return true
+  } 
+  return false
+} 
+
 function generatePassword() {
-  let passL = passLength()
-  let passT = charTypes()
+  let length = passLength()
+  let lCase = lowerCase()
+  let uCase = upperCase()
+  let num = numeric()
+  let spec = specialChar()
+  let val = validate()
 
 }
 
