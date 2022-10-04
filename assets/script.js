@@ -113,7 +113,7 @@ function generatePassword() {
     location.reload();
   }
 }
-=======
+
 
 
 // Get references to the #generate element
