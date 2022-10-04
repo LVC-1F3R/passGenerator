@@ -1,10 +1,12 @@
+
+
 // prompt for desired password length. will return to generatePassword function if a number between 8 to 128 is not selected
 function passLength() {
-  let x = prompt("Pass length? (Must be between 8 to 128 characters & Input must be a number")
+  let x = prompt("Pass length? (Must choose a length between 8 to 128 characters. Input must be a number)")
   if (x >= 8 && x <= 128) {
     return x
   } else {
-    generatePassword()
+    alert("Please input a number between 8 to 128")
   }
   return x
 } 
@@ -58,42 +60,57 @@ function specialChar() {
 }
 
 
-// Shuffle array (Fisher-Yates Shuffle)
+// Shuffle array (Fisher-Yates Shuffle. Commented to describe functionality)
 function shuffle(array) {
+  // defines currentIndex as the length of the passed through array
   let currentIndex = array.length,  randomIndex;
-
-  // While there remain elements to shuffle.
+  // while the current index is not 0
   while (currentIndex != 0) {
-
-    // Pick a remaining element.
+    // defines randomIndex to be a random number rounded down multiplied by the current index
     randomIndex = Math.floor(Math.random() * currentIndex);
+    //decrements index 
     currentIndex--;
-
-    // And swap it with the current element.
+    // shuffles index
     [array[currentIndex], array[randomIndex]] = [
       array[randomIndex], array[currentIndex]];
   }
-
   return array;
 }
 
 
 
-//random password functionality
+//random password functionality (console debug included)
 function generatePassword() {
+  // defines desired password length as variable 
   let length = passLength()
-  let lCase = lowerCase()
-  let uCase = upperCase()
-  let num = numeric()
-  let spec = specialChar()
+  //validation that length is number
+  if (length === NaN) {
+    //reloads page
+    location.reload();
+  } else if (length >= 8 && length <= 128) {
+  //function calls
+   lowerCase()
+   upperCase()
+   numeric()
+   specialChar()
   console.log(length)
+  // uses shuffle function on charArray from line 13
   shuffle(charArray)
+  // converts array into string
   let charString = charArray.toString()
   console.log(charString)
+  // removes residual comments from previous array
   let formattedCharString = charString.replaceAll(',', '')
   console.log(formattedCharString)
+  // shrinks charString down to desired password length
   let generatedPass = formattedCharString.substring(0, length)
   console.log(generatedPass)
+  // resets array
+  // return generated password from function
+  return generatedPass }
+  else {
+    location.reload();
+  }
 }
 
 // Get references to the #generate element
@@ -102,9 +119,14 @@ var generateBtn = document.querySelector("#generate");
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
+  // if (>= 8 && x <= 128 )
   var passwordText = document.querySelector("#password");
   passwordText.value = password;
+}
 
+// reset array (may not be needed)
+function resetArray(array) {
+     array = []
 }
 
 // Add event listener to generate button
