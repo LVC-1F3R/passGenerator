@@ -1,5 +1,6 @@
 
 
+
 // prompt for desired password length. will return to generatePassword function if a number between 8 to 128 is not selected
 function passLength() {
   let x = prompt("Pass length? (Must choose a length between 8 to 128 characters. Input must be a number)")
@@ -112,6 +113,8 @@ function generatePassword() {
     location.reload();
   }
 }
+=======
+
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
